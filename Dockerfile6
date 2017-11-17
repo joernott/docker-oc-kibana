@@ -3,7 +3,7 @@ MAINTAINER Joern Ott <joern.ott@ott-consult.de>
 
 ENV KIBANA_VERSION=6.0.0 \
     APP_USER=kibana \
-    APP_UID=2101 \
+    APP_UID=2102 \
     APP_GROUP=elk \
     APP_GID=2100 \
     APP_HOME=/var/lib/kibana \
