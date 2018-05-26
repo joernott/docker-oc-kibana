@@ -1,4 +1,23 @@
 #!/bin/bash
+IP=$(ip a show eth0 |grep "inet "|sed -e 's|.*inet ||' -e 's|/.*||')
+sed -e "s|#server.host: .*|server.host: [ \"127.0.0.1\", \"${IP}\" ]|" -i /etc/kibana/kibana.yml
+if [ -z "${ELASTICSEARCH_SERVER}" ]; then
+    ELASTICSEARCH_SERVER="elasticsearch"
+fi
+if [ -z "${ELASTICSEARCH_PORT}" ]; then
+    ELASTICSEARCH_PORT=9200
+fi
+
+if [ -z "${ELASTICSEARCH_PROTOCOL}" ]; then
+    ELASTICSEARCH_PROTOCOL="http"
+fi
+sed -e "s|#elasticsearch.url: .*|elasticsearch.url: ${ELASTICSEARCH_PROTOCOL}://${ELASTICSEARCH_SERVER}:${ELASTICSEARCH_PORT}/|" -i /etc/kibana/kibana.yml
+if [ -n ${ELASTICSEARCH_USERNAME} ]; then
+   sed -e "s|#elasticsearch.username: .*|elasticsearch.username: ${ELASTICSEARCH_USERNAME}|" \
+       -e "s|#elasticsearch.password: .*|elasticsearch.password: ${ELASTICSEARCH_PASSWORD}|" \
+       -i /etc/kibana/kibana.yml
+fi
+
 chown -R ${APP_USER}:${APP_GROUP} ${APP_HOME}
 cd ${APP_HOME}
 gosu ${APP_USER}:${APP_GROUP} /usr/share/kibana/bin/kibana \
