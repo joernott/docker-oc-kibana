@@ -1,7 +1,7 @@
-FROM registry.ott-consult.de/oc/java10
+FROM registry.ott-consult.de/oc/base
 LABEL MAINTAINER="joern.ott@ott-consult.de"
 
-ENV KIBANA_VERSION=5.6.9 \
+ENV KIBANA_VERSION=5.6.13 \
     APP_USER=kibana \
     APP_UID=2102 \
     APP_GROUP=elk \
