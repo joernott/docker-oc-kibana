@@ -1,15 +1,15 @@
 FROM registry.ott-consult.de/oc/base
 LABEL MAINTAINER="joern.ott@ott-consult.de"
 
-ENV KIBANA_VERSION=7.0.0-beta1 \
+ENV KIBANA_VERSION=7.0.0_beta1 \
     APP_USER=kibana \
     APP_UID=2102 \
     APP_GROUP=elk \
     APP_GID=2100 \
     APP_HOME=/var/lib/kibana \
     CONF_DIR=/etc/kibana \
-    GIT_COMMIT="x" \
-    IMAGE_HISTORY="x"
+    GIT_COMMIT="" \
+    IMAGE_HISTORY=" « jenkins-docker-oc-base-41 « centos/7 declare -x OLDPWD declare -x PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin declare -x PWD=/ declare -x SHLVL=1"
 
 COPY src /
 
